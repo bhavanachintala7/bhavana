@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appreciation and Accolades | Udaan Society</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-red: #e74c3c;
+            --dark-text: #2c3e50;
+            --light-bg: #f9f9f9;
+        }
+
+        body {
+            background: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero-banner {
+            position: relative;
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1400') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-banner h1 {
+            color: white;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 5%;
+            background: white;
+            font-size: 14px;
+            color: #666;
+            border-bottom: 1px solid #eee;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-red);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .main-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-text);
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .main-heading .highlight {
+            color: var(--primary-red);
+        }
+
+        .sub-heading {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .content-text {
+            line-height: 1.8;
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .content-text h3 {
+            color: var(--dark-text);
+            margin: 30px 0 15px 0;
+            font-size: 1.3rem;
+        }
+
+        .content-text ul {
+            margin-left: 30px;
+            margin-bottom: 30px;
+        }
+
+        .content-text ul li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .content-text ul li strong {
+            color: var(--dark-text);
+        }
+
+        .link-text {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .link-text:hover {
+            gap: 12px;
+        }
+
+        /* Awards Section */
+        .awards-section {
+            background: white;
+            padding: 60px 20px;
+            margin-top: 40px;
+        }
+
+        .awards-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-text);
+            margin-bottom: 50px;
+        }
+
+        .awards-heading .highlight {
+            color: var(--primary-red);
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .award-card {
+            background: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .award-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .award-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .award-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .award-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .award-card h3 {
+            text-align: center;
+            padding: 20px;
+            color: var(--dark-text);
+            font-size: 1.3rem;
+        }
+
+        .award-card p {
+            text-align: center;
+            padding: 0 20px 25px 20px;
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* CTA Section (Footer-like card) */
+        .cta-section {
+            background: var(--light-bg);
+            padding: 60px 20px 80px;
+            margin-top: 40px;
+        }
+
+        .cta-card {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+            padding: 35px 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .cta-text h3 {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .cta-text h2 {
+            font-size: 2.3rem;
+            color: var(--dark-text);
+            line-height: 1.3;
+            font-weight: 800;
+        }
+
+        .cta-text h2 .highlight {
+            color: var(--primary-red);
+        }
+
+        .cta-readmore {
+            margin-top: 18px;
+            display: inline-block;
+            color: var(--primary-red);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .cta-readmore:hover {
+            text-decoration: underline;
+        }
+
+        .cta-button {
+            background: #2274e5;
+            color: #ffffff;
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            min-width: 190px;
+            box-shadow: 0 4px 16px rgba(34, 116, 229, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button span.main-label {
+            font-size: 15px;
+        }
+
+        .cta-button span.sub-label {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .cta-button:hover {
+            background: #1a63c5;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 22px rgba(34, 116, 229, 0.55);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--primary-red);
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-banner h1 {
+                font-size: 2rem;
+                padding: 0 20px;
+            }
+
+            .main-heading,
+            .awards-heading {
+                font-size: 1.8rem;
+            }
+
+            .cta-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 28px 20px;
+            }
+
+            .cta-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-button {
+                align-self: stretch;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <h1>Appreciation and Accolades</h1>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> » Appreciation and Accolades
+    </div>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <h1 class="main-heading fade-in">
+            RECOGNIZED EXCELLENCE: UDAAN SOCIETY'S <span class="highlight">APPRECIATION AND ACCOLADES</span> JOURNEY
+        </h1>
+        <p class="sub-heading fade-in">UDAAN Society's Impact Celebrated</p>
+
+        <div class="content-text fade-in">
+            <p>UDAAN Society is proud of its transformative journey in empowering communities and fostering positive change. Our unwavering commitment has been recognized through prestigious awards like the Governor's Award, Commissioner's Award, Pantagon Award, Swami Vivekananda Samman, Nagar Nigam Award, and the Award for Blood Donation. These appreciations and accolades highlight the effectiveness of our impactful initiatives, innovative programs, and the dedication of our team.</p>
+
+            <p>UDAAN Society takes great pride in its journey of empowerment and community development, marked by a trail of prestigious awards and accolades. Our unwavering commitment to fostering positive change has been recognized and celebrated on numerous occasions. These accolades serve as a testament to the impactful initiatives, innovative programs, and dedicated efforts of UDAAN Society in uplifting communities.</p>
+
+            <h3>A Testament to Our Work</h3>
+            <p>Receiving these awards is a testament to UDAAN Society's dedication to:</p>
+            <ul>
+                <li><strong>Community Upliftment:</strong> Our programs empower communities and create a lasting positive impact.</li>
+                <li><strong>Empowering Lives:</strong> We strive to give individuals the tools and resources they need to thrive.</li>
+                <li><strong>Innovative Solutions:</strong> We develop creative approaches to address community challenges.</li>
+            </ul>
+
+            <h3>A Brighter Future</h3>
+            <p>These awards motivate us to continue our mission of building a brighter and more inclusive future for all. We are committed to fostering positive change and creating a lasting impact.</p>
+
+            <a href="#" class="link-text">
+                Explore Our Partnerships – Click Here <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section class="awards-section">
+        <h2 class="awards-heading">
+            <span class="highlight">AWARDS</span> RECEIVED BY UDAAN SOCIETY
+        </h2>
+
+        <div class="awards-grid">
+            <div class="award-card">
+                <img src="Screenshot 2026-03-08 101448.png" alt="Governor Award" loading="lazy">
+                <h3>Governor Award</h3>
+                <p>Receiving citation by Hon'ble Governor of U.P for Exceptional work in TB Eradication.</p>
+            </div>
+
+            <div class="award-card">
+                <img src="Screenshot 2026-03-08 101642.png" alt="Commissioner Award" loading="lazy">
+                <h3>Commissioner Award</h3>
+                <p>Receiving award for exemplary work by then Divisional Commissioner Shri GS Priyadarshi (IAS).</p>
+            </div>
+
+            <div class="award-card">
+                <img src="Screenshot 2026-03-08 101732.png" alt="Pantagon Award" loading="lazy">
+                <h3>Pantagon Award</h3>
+                <p>Receiving Pentagon award at AMU by Dr. Jakir Hussain Foundation.</p>
+            </div>
+
+            <div class="award-card">
+                <img src="Screenshot 2026-03-08 101809.png" alt="Swami Vivekananda Samman" loading="lazy">
+                <h3>Swami Vivekananda Samman</h3>
+                <p>Swami Vivekanad Smriti Samman in Year 2021</p>
+            </div>
+
+            <div class="award-card">
+                <img src="Screenshot 2026-03-08 115850.png" alt="Nagar Nigam Award" loading="lazy">
+                <h3>Nagar Nigam Award</h3>
+                <p>Awarded for Contribution in Swachh Bharat Mission by Then Municipal Commissioner, Aligarh, Shri Santosh Sharma.</p>
+            </div>
+
+            <div class="award-card">
+                <img src="Screenshot 2026-03-08 115938.png" alt="Blood Donation Award" loading="lazy">
+                <h3>Award for Blood Donation</h3>
+                <p>Award for Exceptional Contribution in Blood Donation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Footer-like Section -->
+    <section class="cta-section">
+        <div class="cta-card">
+            <div class="cta-text">
+                <h3>GIVE US A HAND</h3>
+                <h2><span class="highlight">Support Us</span> And Change The Course Of A Child's Life Today!</h2>
+                <a href="#" class="cta-readmore">Read more...</a>
+            </div>
+            <a href="#" class="cta-button">
+                <span class="main-label">Donate Now</span>
+                <span class="sub-label">Secured by Razorpay</span>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        });
+
+        // Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in, .award-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Stagger animation for award cards
+        document.querySelectorAll('.award-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Hover effect via JS (extra)
+        document.querySelectorAll('.award-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Lazy loading enhancement for images
+        if (!('loading' in HTMLImageElement.prototype)) {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+            document.body.appendChild(script);
+        }
+
+        // Parallax effect for hero banner
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero-banner');
+            const scrolled = window.scrollY;
+            if (scrolled < hero.offsetHeight) {
+                hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+            }
+        });
+
+        // Click animation on CTA button
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            this.style.transform = 'scale(0.96)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 160);
+        });
+
+        // Page load fade-in
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            requestAnimationFrame(() => {
+                document.body.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>
